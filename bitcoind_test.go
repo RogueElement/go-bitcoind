@@ -2,13 +2,14 @@ package bitcoind
 
 import (
 	"fmt"
-	. "github.com/onsi/ginkgo"
-	. "github.com/onsi/gomega"
 	"log"
 	"net/http"
 	"net/http/httptest"
 	"strconv"
 	"strings"
+
+	. "github.com/onsi/ginkgo"
+	. "github.com/onsi/gomega"
 )
 
 func getNewTestServer(handler http.Handler) (testServer *httptest.Server, host string, port int, err error) {
@@ -1535,7 +1536,7 @@ var _ = Describe("Bitcoind", func() {
 			}
 			defer ts.Close()
 			bitcoindClient, _ := New(host, port, "x", "fake", false)
-			txID, err := bitcoindClient.ListReceivedByAddress(1, true)
+			txID, err := bitcoindClient.ListReceivedByAddress(1, true, false, "")
 			It("should not error", func() {
 				Expect(err).NotTo(HaveOccurred())
 			})

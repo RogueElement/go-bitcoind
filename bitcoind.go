@@ -572,8 +572,8 @@ type ReceivedByAddress struct {
 }
 
 // ListReceivedByAccount Returns an slice of AccountRecieved:
-func (b *Bitcoind) ListReceivedByAddress(minConf uint32, includeEmpty bool) (list []ReceivedByAddress, err error) {
-	r, err := b.client.call("listreceivedbyaddress", []interface{}{minConf, includeEmpty})
+func (b *Bitcoind) ListReceivedByAddress(minConf uint32, includeEmpty bool, watchOnly bool, addressFilter string) (list []ReceivedByAddress, err error) {
+	r, err := b.client.call("listreceivedbyaddress", []interface{}{minConf, includeEmpty, watchOnly, addressFilter})
 	if err = handleError(err, &r); err != nil {
 		return
 	}
